@@ -62,3 +62,12 @@ CREATE TABLE IF NOT EXISTS users();
       синопсис
       ціна
 */
+-- 
+CREATE TABLE IF NOT EXISTS books (
+  title VARCHAR(300),
+  author VARCHAR(200),
+  pages SMALLINT,
+  is_avaliable BOOLEAN,
+  synopsys TEXT,
+  price NUMERIC(9,2),
+);
