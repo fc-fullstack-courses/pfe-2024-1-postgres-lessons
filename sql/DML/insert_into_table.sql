@@ -18,6 +18,6 @@ VALUES
 INSERT INTO users
 (first_name, last_name, email, account_balance, is_male, birthday, height)
 VALUES
-('Jane', 'Smith', 'jd@gmail.com', 99999.99, false, '2000-12-12', 1.5),
-('Test', 'Test', 'test2@gmail.com', 0.99, true, '1999-01-01', 1),
-('Admin', 'Moder', 'admoder2@gmail.com',1, true, '2000-12-12', 2.99);
+('Jane1', 'Smith', 'jd1@mail.com', 99999.99, false, '2000-12-12', 1.5),
+('Test1', 'Test', 'test3@gmail.com', 0.99, true, '1999-01-01', 1),
+('Admin1', 'Moder', 'admoder3@gmail.com',1, true, '2000-12-12', 2.99);
