@@ -16,8 +16,8 @@ VALUES
 -- (5000, NULL, NULL, NULL, NULL, NULL);
 -- @block
 INSERT INTO users
-(first_name, last_name, email, account_balance, is_male, birthday)
+(first_name, last_name, email, account_balance, is_male, birthday, height)
 VALUES
-('Jane', 'Smith', 'js2@gmail.com', 99999.99, false, '2000-12-12'),
-('Test', 'Test', 'test2@gmail.com', 0.99, true, '2001-01-01'),
-('Admin', 'Moder', 'admoder2@gmail.com', -5000, true, '5000-12-12');
+('Jane', 'Smith', 'jd@gmail.com', 99999.99, false, '2000-12-12', 1.5),
+('Test', 'Test', 'test2@gmail.com', 0.99, true, '1999-01-01', 1),
+('Admin', 'Moder', 'admoder2@gmail.com',1, true, '2000-12-12', 2.99);
