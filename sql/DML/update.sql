@@ -27,4 +27,6 @@ WHERE id % 2 = 0;
 -- @block збільшити висоту 10 юзера на 5 сантиметрів
 UPDATE users
 SET height = height + 0.05
-WHERE id = 10;
+WHERE id = 8
+-- працює для INSERT, DELETE, UPDATE
+RETURNING *;

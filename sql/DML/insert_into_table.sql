@@ -12,7 +12,9 @@ INSERT INTO users VALUES
 INSERT INTO users
 (account_balance, first_name, last_name, email, is_male, height, birthday)
 VALUES
-(5000, 'Jane', 'Tcepes', 'email@email.com', true, 1.75, '2001-12-5');
+(5000, 'Jane', 'Jones', 'email2@email.com', true, 1.75, '2001-12-5')
+-- повернути даніі з усіх ствопчиків
+RETURNING *;
 -- (5000, NULL, NULL, NULL, NULL, NULL);
 -- @block
 INSERT INTO users
