@@ -42,9 +42,9 @@ ALTER COLUMN id TYPE bigint;
 ALTER TABLE users
 RENAME COLUMN account_balance TO balance;
 -- перейменування таблицю
-ALTER TABLE users
-RENAME TO humans;
--- В одному алтері можна поєднувати декілька різних змін
 ALTER TABLE humans
+RENAME TO users;
+-- В одному алтері можна поєднувати декілька різних змін
+ALTER TABLE users
 ADD COLUMN updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
 DROP COLUMN last_name;

@@ -10,14 +10,14 @@ INSERT INTO users VALUES
 -- вставка даних у довільному порядку і у вказані стовпчики
 -- @block 
 INSERT INTO users
-(account_balance, first_name, last_name, email, is_male)
+(account_balance, first_name, last_name, email, is_male, height, birthday)
 VALUES
-(5000, 'Jane', 'Tcepes', 'email@email.com', true);
+(5000, 'Jane', 'Tcepes', 'email@email.com', true, 1.75, '2001-12-5');
 -- (5000, NULL, NULL, NULL, NULL, NULL);
 -- @block
 INSERT INTO users
 (first_name, last_name, email, account_balance, is_male, birthday, height)
 VALUES
-('Jane1', 'Smith', 'jd1@mail.com', 99999.99, false, '2000-12-12', 1.5),
-('Test1', 'Test', 'test3@gmail.com', 0.99, true, '1999-01-01', 1),
-('Admin1', 'Moder', 'admoder3@gmail.com',1, true, '2000-12-12', 2.99);
+('Jane2', 'Smith', 'jd2@mail.com', 99999.99, false, '2000-12-12', 1.5),
+('Test2', 'Test', 'test1@gmail.com', 0.99, true, '1999-01-01', 2),
+('Admin2', 'Moder', 'admoder1@gmail.com',1, true, '2000-12-12', 1.33);
