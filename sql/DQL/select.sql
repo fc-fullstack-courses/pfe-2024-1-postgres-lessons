@@ -75,3 +75,33 @@ ORDER BY id ASC
 -- після сортування якщо воно є
 LIMIT 1
 OFFSET 2;
+-- @block мінімальний зріст користувача
+SELECT height FROM users
+ORDER BY height ASC
+LIMIT 1;
+-- @block максимальний зріст користувача
+SELECT height FROM users
+ORDER BY height DESC
+LIMIT 1;
+-- @block середній зріст користувачів
+???
+/*
+  агрегатні функції - фуннкціі які з багатьох значеть отримують 1 результат
+
+    avg - середне значення
+    min - мінмальне значення
+    max - максимальн значення
+    sum - сума вхідних значень / виразів. (аналог reduce у js)
+    count - рахує кількість кортежів / рядків у запиті
+*/
+-- @block мінімальний зріст користувача
+SELECT min(height) FROM users;
+-- @block середній зріст користувачів
+SELECT avg(height) FROM users;
+-- @block максимальний зріст користувача
+SELECT max(height) FROM users;
+-- @block загальна кількість грошей не всіх акаунтах
+SELECT sum(account_balance) "всього грошей" FROM users;
+-- @block скільки користувачів мають певне ім'я
+SELECT count(*) FROM users
+WHERE first_name = 'Kuzman';
