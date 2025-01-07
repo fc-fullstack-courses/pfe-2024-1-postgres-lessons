@@ -1,17 +1,9 @@
 const { Client } = require('pg');
+const config = require('../configs/db.json');
 const { getUsers } = require('../api');
 const { mapUser } = require('../utils/userUtils');
 
-const config = {
-  user: 'postgres',
-  password: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  database: 'pfe-2024-1_lessons',
-};
-
 const client = new Client(config);
-
 
 async function startScript() {
   await client.connect();
