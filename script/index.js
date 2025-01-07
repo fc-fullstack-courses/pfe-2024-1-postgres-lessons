@@ -1,4 +1,6 @@
 const { Client } = require('pg');
+const _ = require('lodash');
+const { getUsers } = require('../api');
 
 const config = {
   user: 'postgres',
@@ -10,60 +12,26 @@ const config = {
 
 const client = new Client(config);
 
-const user = {
-  firstName: 'Insert',
-  lastName: 'Insertovich',
-  email: 'inserter@mail.com',
-  accountBalance: 250,
-  height: 1.67,
-  isMale: true,
-  birthday: '1980-07-15',
-};
-
-const users = [
-  {
-    firstName: 'Insert 1',
-    lastName: 'Insertovich 1',
-    email: 'inserter1@mail.com',
-    accountBalance: 552245,
-    height: 1.67,
-    isMale: false,
-    birthday: '1995-11-02',
-  },
-  {
-    firstName: 'Insert 2',
-    lastName: 'Insertovich 2',
-    email: 'inserter2@mail.com',
-    accountBalance: 0,
-    height: 1.98,
-    isMale: false,
-    birthday: '1988-04-28',
-  },
-  {
-    firstName: 'Insert 3',
-    lastName: 'Insertovich 3',
-    email: 'inserter3@mail.com',
-    accountBalance: 6500,
-    height: 1.58,
-    isMale: true,
-    birthday: '1980-03-03',
-  },
-];
 
 function mapUser(user) {
-  return `('${user.firstName}', '${user.lastName}',' ${user.email}', ${user.isMale}, ${user.height}, ${user.accountBalance}, '${user.birthday}')`;
+
+  const { name: {first, last}, email, gender, dob: {date: birthday}} = user;
+
+  const height = _.random(1.3, 2);
+
+  const accountBalance = _.random(0, 25000);
+
+  return `('${first}', '${last}',' ${email}', ${gender === 'male'}, ${height}, ${accountBalance}, '${birthday}')`;
 }
-
-const usersInsertStringsArray = users.map(mapUser);
-
-// console.log(usersInsertStringsArray);
-
-const usersInsertString = usersInsertStringsArray.join(',');
-
-// console.log(usersInsertString);
 
 async function startScript() {
   await client.connect();
+
+  const users = await getUsers();
+
+  const usersInsertStringsArray = users.map(mapUser);
+
+  const usersInsertString = usersInsertStringsArray.join(',');
 
   const res = await client.query(`
     INSERT INTO users (
@@ -81,7 +49,7 @@ async function startScript() {
 
   // console.log(res); // res.rows - резульатати запиту (користувачі)
 
-  console.log(res.rows[0]);
+  console.log(res.rows);
 
   await client.end();
 }
