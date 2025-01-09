@@ -96,13 +96,14 @@ CREATE TABLE IF NOT EXISTS country_2 (
 --
 CREATE TABLE IF NOT EXISTS anthem_2 (
   id SERIAL PRIMARY KEY,
-  country_id INT NOT NULL UNIQUE REFERENCES country_2,
+  country_id INT NOT NULL UNIQUE REFERENCES country_2 DEFERRABLE INITIALLY DEFERRED,
   created_at TIMESTAMP NOT NULL DEFAULT current_timestamp,
   updated_at TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
 --
 ALTER TABLE country_2
-ADD COLUMN anthem_id INT NOT NULL UNIQUE REFERENCES anthem_2;-- @block вставка даних
+ADD COLUMN anthem_id INT NOT NULL UNIQUE REFERENCES anthem_2 DEFERRABLE INITIALLY DEFERRED;
+-- @block вставка даних
 INSERT INTO users (
     id,
     first_name,
@@ -164,3 +165,12 @@ UPDATE country_1
 SET anthem_id = 1 WHERE id = 1; 
 UPDATE country_1
 SET anthem_id = 2 WHERE id = 2; 
+-- @block 1 : 1
+BEGIN; -- старт транзакції
+INSERT INTO anthem_2 (country_id)
+VALUES (1), (2);
+--
+INSERT INTO country_2 ("name", "anthem_id")
+VALUES ('Test', 1), ('Test2', 2);
+-- кінець транзакції
+COMMIT;
