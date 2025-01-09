@@ -102,4 +102,65 @@ CREATE TABLE IF NOT EXISTS anthem_2 (
 );
 --
 ALTER TABLE country_2
-ADD COLUMN anthem_id INT NOT NULL UNIQUE REFERENCES anthem_2;
+ADD COLUMN anthem_id INT NOT NULL UNIQUE REFERENCES anthem_2;-- @block вставка даних
+INSERT INTO users (
+    id,
+    first_name,
+    last_name,
+    email,
+    account_balance,
+    height,
+    is_male,
+    birthday
+  )
+VALUES (
+    100000,
+    'Buyer',
+    'Byerenko',
+    'buyer@gmail.com',
+    150000000,
+    1.88,
+    false,
+    '1989-05-05'
+  );
+-- 
+INSERT INTO products (
+    name,
+    price,
+    quantity,
+    category,
+    is_for_adult
+  )
+VALUES 
+('Phone Super', 5000, 500, 'phones',false),
+('GigaBrush', 150, 99999999, 'bathroom',false),
+('Mega TV', 50000, 41582525, 'electronics', false),
+('Rum', 3000, 145000, 'alcohol', true);
+-- 1 : m
+INSERT INTO orders (user_id)
+VALUES (100000),
+(208),
+(208),
+(210),
+(208);
+-- n : m
+INSERT INTO products_to_orders (order_id, product_id, quantity)
+VALUES 
+(1, 1, 1),
+(2, 2, 5),
+(2, 4, 10),
+(3, 1, 2);
+-- error
+INSERT INTO products_to_orders (order_id, product_id, quantity)
+VALUES (NULL, 500000, 200);
+-- @block 0 : 1
+INSERT INTO country_1 ("name")
+VALUES ('Країна 1'), ('Країна 2');
+--
+INSERT INTO anthem_1 (country_id)
+VALUES (1), (2);
+--
+UPDATE country_1
+SET anthem_id = 1 WHERE id = 1; 
+UPDATE country_1
+SET anthem_id = 2 WHERE id = 2; 
