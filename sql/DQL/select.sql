@@ -145,3 +145,12 @@ WHERE birthday = '1946-06-20';
 SELECT count(*), is_male FROM users
 WHERE account_balance > 3000
 GROUP BY is_male;
+-- @block вивести кількість записів у таблиці для кожного імені
+SELECT count(id) "кількість імен", first_name FROM users
+GROUP BY first_name;
+-- @block вивести кількість записів у таблиці для кожного імені якщо цих записів більше ніж 1
+SELECT count(id) "кількість імен", first_name FROM users
+-- WHERE count(id) > 1 -- не спрацюєб агрегатні функції запускаються після WHERE
+GROUP BY first_name
+-- HAVING -  аналог WHERE який фільтрує результати группування та агреграцій
+HAVING count(id) > 1;
