@@ -130,3 +130,18 @@ GROUP BY height;
 
   4. кількість чоловіків і жінок баланс яких більше за 3000
 */
+
+-- @block 1. мінімальний баланс чоловіків
+SELECT min(account_balance) "balance" FROM users
+WHERE is_male;
+
+-- @block 2. мінімальний, максимальний і середній баланс жінок
+SELECT min(account_balance), avg(account_balance), max(account_balance) FROM users
+WHERE NOT is_male;
+-- @block 3. кількість людей які народилися у певну дату
+SELECT count(*) FROM users
+WHERE birthday = '1946-06-20';
+-- @block 4. кількість чоловіків і жінок баланс яких більше за 3000
+SELECT count(*), is_male FROM users
+WHERE account_balance > 3000
+GROUP BY is_male;
