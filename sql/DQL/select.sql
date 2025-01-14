@@ -173,3 +173,25 @@ FROM (
   FROM users
 ) users_with_age
 WHERE users_with_age.age > 50;
+
+CHECK (birthday > '1890-01-01' AND  extract(year from age(birthday)) >= 18)
+
+ALTER TABLE workers
+ADD CHECK (email != ''),
+ALTER COLUMN email SET NOT NULL;
+--
+SELECT birthday FROM users
+WHERE id = 5;
+--
+UPDATE users
+SET birthday = make_date(1991, extract(month from birthday)::INT, extract(day from birthday)::INT)
+WHERE id = 5
+RETURNING birthday;
+--
+SELECT * FROM employees
+WHERE extract(YEAR FROM age(birthday)) BETWEEN 26 AND 28;
+--
+SELECT * FROM (
+  SELECT *,extract(YEAR FROM age(current_date, birthday)) age FROM users
+)
+WHERE age BETWEEN 26 AND 28;
